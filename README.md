@@ -33,13 +33,18 @@ MongoDB (using MongoDB Compass)
 
 👥 Team Members
 Frontend Development
+
 Paras
 Pragati
 
 
 Backend Development
+
 Kirti
 Khushi
+
+
+
 🎯 Project Objective
 
 To bridge the gap between having basic ingredients and the desire to cook something creative by providing a smart, user-friendly meal planning system.
