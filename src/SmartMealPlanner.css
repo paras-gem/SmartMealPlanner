@@ -1,0 +1,748 @@
+/* Modern UI Overhaul for Smart Meal Planner */
+
+:root {
+    --shadow-sm: 0 1px 2px 0 rgba(155, 112, 112, 0.647);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    --radius-sm: 0.375rem;
+    --radius: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    --card-shadow: var(--shadow-md);
+}
+
+.dark-mode {
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+.smart-meal-planner {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Base Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-main);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+}
+
+p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    40% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-fade-up {
+    opacity: 0;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pop-in {
+    animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Buttons */
+.cta-button {
+    background: var(--accent);
+    color: var(--accent-text);
+    border: none;
+    padding: 16px 36px;
+    border-radius: var(--radius-xl);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -10px var(--accent);
+    transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px -10px var(--accent);
+    filter: brightness(1.1);
+}
+
+.login-btn {
+    background: var(--accent);
+    color: var(--accent-text);
+    border: none;
+    padding: 10px 24px;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.login-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+    border-radius: 0 0 40px 40px;
+    margin-bottom: 60px;
+}
+
+.hero-slider,
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 1.5s ease, transform 6s ease-out;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h2 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--accent);
+    width: 30px;
+    border-radius: 10px;
+}
+
+/* Features Grid */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+}
+
+.card {
+    background: var(--bg-card);
+    padding: 40px 30px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card p {
+    font-size: 1.05rem;
+}
+
+/* Categories & Recipes */
+.categories-section {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.filter-btn:hover {
+    border-color: var(--accent);
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    color: var(--accent-text);
+    border-color: var(--accent);
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.recipe-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.recipe-card.locked {
+    opacity: 0.8;
+}
+
+.recipe-card.locked:hover {
+    transform: none;
+    box-shadow: var(--shadow-md);
+    border-color: var(--border);
+}
+
+.recipe-img-wrapper {
+    position: relative;
+    height: 220px;
+    width: 100%;
+}
+
+.recipe-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.recipe-card:hover .recipe-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.premium-lock,
+.health-flag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 700;
+    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+}
+
+.premium-lock {
+    background: rgba(0, 0, 0, 0.75);
+    color: #f1c40f;
+}
+
+.health-flag {
+    top: auto;
+    bottom: 16px;
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.recipe-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.recipe-badge {
+    align-self: flex-start;
+    padding: 4px 12px;
+    background: var(--tag-bg);
+    color: var(--accent);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.recipe-card h4 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.recipe-meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    margin-top: auto;
+}
+
+.view-details-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.recipe-card:not(.locked):hover .view-details-btn {
+    background: var(--accent);
+    color: var(--accent-text);
+    border-color: var(--accent);
+}
+
+.view-details-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Quick Meal Planner (AI) */
+.planner {
+    padding: 80px 24px;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.planner-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.planner-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.input-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 18px 24px;
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--border);
+    background: var(--bg-base);
+    color: var(--text-main);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.search-wrapper input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--tag-bg);
+}
+
+.suggest-btn,
+.clear-btn {
+    padding: 0 30px;
+    border-radius: var(--radius-xl);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.suggest-btn {
+    background: var(--accent);
+    color: var(--accent-text);
+    border: none;
+    box-shadow: 0 4px 15px -5px var(--accent);
+}
+
+.suggest-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.clear-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 2px solid var(--border);
+}
+
+.clear-btn:hover {
+    background: var(--border);
+    color: var(--text-main);
+}
+
+.mood-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    overflow: hidden;
+    text-align: left;
+}
+
+.mood-item {
+    padding: 14px 24px;
+    cursor: pointer;
+    color: var(--text-main);
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.mood-item:hover {
+    background: var(--tag-bg);
+    color: var(--accent);
+}
+
+.suggestion-result {
+    margin-top: 40px;
+}
+
+.suggested-recipe-card {
+    display: flex;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.suggested-recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.suggested-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.sync-action {
+    display: flex;
+    gap: 8px;
+}
+
+.sync-icon-btn {
+    background: rgba(109, 186, 95, 0.1);
+    border: 1px solid rgba(109, 186, 95, 0.2);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+}
+
+.sync-icon-btn:hover {
+    background: var(--primary-color, #6dba5f);
+    color: white;
+    transform: scale(1.1);
+}
+
+.sync-icon-btn.active {
+    background: rgba(46, 204, 113, 0.15);
+    border-color: #27ae60;
+    color: #27ae60;
+}
+
+.sync-icon-btn.active:hover {
+    background: #27ae60;
+    color: white;
+}
+
+.suggested-img {
+    width: 300px;
+    height: 250px;
+}
+
+.suggested-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.suggested-content {
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.suggested-content h3 {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.suggested-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.view-link {
+    font-weight: 700;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.suggestion-error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 3rem;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .suggested-recipe-card {
+        flex-direction: column;
+    }
+
+    .suggested-img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .suggest-btn,
+    .clear-btn {
+        padding: 16px;
+    }
+}
+
+/* Trending Section restored styles */
+.trending-section {
+    padding: 0 24px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Category & Goal Persistence Styles */
+.goal-selection .filter-chip {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+    border: 1.5px solid var(--border);
+}
+
+.goal-selection .filter-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    background: rgba(109, 186, 95, 0.05);
+}
+
+.save-pref-btn {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1.5px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.save-pref-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+.dark-mode .save-pref-btn {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.dark-mode .save-pref-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}

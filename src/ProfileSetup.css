@@ -1,0 +1,227 @@
+:root {
+    --primary: #2ecc71;
+    --primary-dark: #27ae60;
+    --secondary: #3498db;
+    --bg-light: #f8f9fa;
+    --bg-dark: #020617;
+    --text-light: #1e293b;
+    --text-dark: #f8f9fa;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.dark-mode .site-header {
+    background: var(--bg-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.dark-mode .glass-header {
+    background: rgba(15, 23, 42, 0.85);
+}
+
+.logo-text {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 24px;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-setup-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 40px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+
+
+.setup-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 24px;
+    background: var(--card-light);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.dark-mode .setup-card {
+    background: var(--card-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.setup-card h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.setup-card p {
+    text-align: center;
+    opacity: 0.7;
+    margin-bottom: 32px;
+}
+
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .form-group input,
+.dark-mode .form-group select {
+    background: rgba(15, 23, 42, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.1);
+    background: white;
+}
+
+.dark-mode .form-group input:focus,
+.dark-mode .form-group select:focus {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.generate-btn {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    background: var(--primary);
+    color: var(--primary-text);
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.generate-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+}
+
+.skip-btn {
+    margin-top: 10px;
+    padding: 10px;
+    background: transparent;
+    color: var(--text-light);
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.dark-mode .skip-btn {
+    color: var(--text-dark);
+}
+
+.skip-btn:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Animations */
+.animate-pop-in {
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    opacity: 0;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .setup-card {
+        padding: 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

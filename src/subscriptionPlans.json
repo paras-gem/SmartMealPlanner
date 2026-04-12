@@ -1,0 +1,60 @@
+[
+    {
+        "id": "basic",
+        "tier": "Basic",
+        "tagline": "For casual cooks",
+        "price": 0,
+        "period": "forever",
+        "color": "#888",
+        "features": [
+            "Access to 100+ free recipes",
+            "Basic AI Meal Planner",
+            "Standard support",
+            "Personal grocery list"
+        ],
+        "locked": [],
+        "buttonText": "Current Plan",
+        "level": "Basic"
+    },
+    {
+        "id": "pro",
+        "tier": "Pro",
+        "tagline": "For health-focused individuals",
+        "price": 4.99,
+        "period": "month",
+        "color": "#6dba5f",
+        "popular": true,
+        "features": [
+            "All Basic features",
+            "NutriBot AI Chat Assistant",
+            "Diabetic & hypertension health flags",
+            "Advanced analytics dashboard",
+            "Priority customer support",
+            "Download meal plans as PDF"
+        ],
+        "locked": [
+            "family-sync"
+        ],
+        "buttonText": "Get Pro",
+        "level": "Pro"
+    },
+    {
+        "id": "family",
+        "tier": "Family",
+        "tagline": "Cook together. Grow together.",
+        "price": 9.99,
+        "period": "month",
+        "color": "#a855f7",
+        "features": [
+            "All Pro features",
+            "👨‍👩‍👧 Family Sync (up to 6 members)",
+            "Shared grocery lists in real-time",
+            "Shared calendar & meal schedule",
+            "Personalized per-member nutrition",
+            "Early access to new features"
+        ],
+        "locked": [],
+        "buttonText": "Get Family",
+        "level": "Family"
+    }
+]

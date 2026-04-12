@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+/* ── GLOBAL THEME INHERITANCE ──────────────────── */
+html,
+body,
+#root,
+.App {
+    background-color: var(--bg, #0f1a10);
+    color: var(--text, #e8f0e8);
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Make every page div respect the theme */
+[class*="-page"],
+[class*="-container"],
+[class*="-content"],
+[class*="-wrapper"],
+[class*="-section"],
+main,
+section,
+article,
+aside {
+    background-color: inherit;
+    color: inherit;
+}
+
+/* Global heading and paragraph color */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+li,
+td,
+th {
+    color: inherit;
+}
+
+/* Cards should use card variable */
+[class*="-card"] {
+    background: var(--bg-card);
+    color: var(--text);
+}
+
+/* Global input styling */
+input,
+textarea,
+select {
+    background: var(--bg-input);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    width: 100%;
+    margin-top: auto;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    background: var(--bg-footer);
+    color: var(--footer-text);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Shared FAB styles */
+.fab-settings,
+.fab-ai {
+    position: fixed;
+    bottom: 28px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fabEntry 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Settings — bottom left */
+.fab-settings {
+    left: 28px;
+    background: var(--accent);
+    border: 1px solid var(--border);
+    animation-delay: 0.1s;
+}
+
+/* AI — bottom right */
+.fab-ai {
+    right: 28px;
+    background: var(--accent);
+    border: 1px solid var(--border);
+    animation-delay: 0.2s;
+}
+
+/* Hover effects */
+.fab-settings:hover {
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 6px 28px rgba(109, 186, 95, 0.35);
+}
+
+.fab-ai:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 28px rgba(109, 186, 95, 0.5);
+}
+
+/* Active press */
+.fab-settings:active,
+.fab-ai:active {
+    transform: scale(0.92);
+}
+
+/* Entry animation — bounces up from bottom */
+@keyframes fabEntry {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Pulse ring on AI button */
+.fab-ai::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(109, 186, 95, 0.6);
+    animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.7);
+        opacity: 0;
+    }
+}
+
+/* Tooltip label on hover */
+.fab-settings::before,
+.fab-ai::before {
+    content: attr(title);
+    position: absolute;
+    background: rgba(15, 26, 16, 0.9);
+    color: #e8f0e8;
+    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    border: 1px solid rgba(109, 186, 95, 0.2);
+}
+
+.fab-settings::before {
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fab-ai::before {
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fab-settings:hover::before,
+.fab-ai:hover::before {
+    opacity: 1;
+}
+
+/* Settings spin animation when page is settings */
+.fab-settings.active {
+    animation: spinOnce 0.4s ease forwards;
+}
+
+@keyframes spinOnce {
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+/* ── FOOTER ─────────────────────────────────────── */
+.site-footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    background: var(--bg-nav);
+    margin-top: auto;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+
+.dark-mode .site-footer {
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}

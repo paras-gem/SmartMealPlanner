@@ -1,0 +1,164 @@
+.contact-page {
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+.contact-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 20px 60px;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.contact-info h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.info-item .icon {
+    font-size: 2rem;
+    background: rgba(46, 204, 113, 0.1);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.info-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+/* Feedback Card */
+.feedback-card {
+    background: var(--card-light);
+    padding: 40px;
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .feedback-card {
+    background: var(--card-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+.feedback-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feedback-form input,
+.feedback-form select,
+.feedback-form textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.dark-mode .feedback-form input,
+.dark-mode .feedback-form select,
+.dark-mode .feedback-form textarea {
+    background: rgba(15, 23, 42, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-text);
+}
+
+.feedback-form input:focus,
+.feedback-form select:focus,
+.feedback-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.1);
+}
+
+.dark-mode .feedback-form input:focus,
+.dark-mode .feedback-form select:focus,
+.dark-mode .feedback-form textarea:focus {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.submit-feedback-btn {
+    padding: 16px;
+    background: var(--primary);
+    color: var(--primary-text);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 10px;
+}
+
+.submit-feedback-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+}
+
+.success-message {
+    text-align: center;
+    padding: 40px;
+}
+
+.success-message span {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
