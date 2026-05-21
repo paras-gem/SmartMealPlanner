@@ -34,13 +34,13 @@ MongoDB (using MongoDB Compass)
 👥 Team Members
 Frontend Development
 
-Paras
+Paras,
 Pragati
 
 
 Backend Development
 
-Kirti
+Kirti,
 Khushi
 
 
